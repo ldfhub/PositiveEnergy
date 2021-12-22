@@ -16,3 +16,6 @@ declare namespace NodeJS {
     TARO_ENV: 'weapp' | 'swan' | 'alipay' | 'h5' | 'rn' | 'tt' | 'quickapp' | 'qq' | 'jd'
   }
 }
+declare interface window {
+  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any
+}
