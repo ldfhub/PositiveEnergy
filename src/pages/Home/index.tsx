@@ -3,7 +3,7 @@ import { View } from '@tarojs/components';
 import { IHomeProps } from './index.interface';
 import TabBar from '../../components/TabBar/index'
 
-const Login:FC<IHomeProps> = () => {
+const Home:FC<IHomeProps> = () => {
   return (
     <View>
       这是首页
@@ -12,5 +12,5 @@ const Login:FC<IHomeProps> = () => {
   );
 }
 
-export default Login;
+export default Home;
 

@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { FC, ReactElement } from 'react';
 
-const Upload = () => {
-  return (
-    <div>
-      这是上传页面
-    </div>
-  )
+interface indexProps {
+
 }
+
+const Upload: FC<indexProps> = (): ReactElement => {
+  return (
+    <div>这是我的页面</div>
+  );
+}
+
 export default Upload;
+
+
 
