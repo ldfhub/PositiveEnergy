@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import { View, Button } from '@tarojs/components';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAction } from '../../actions/count';
-import { IState } from './index.interface';
+import { RootState } from '../../store'
 import styles from './index.module.scss';
 
 interface IJokeProps {
@@ -12,9 +12,10 @@ interface IJokeProps {
 const Joke: FC<IJokeProps> = (props):ReactElement => {
   const dispatch = useDispatch();
   useSelector((state) => {
-    console.log(state);
+    console.log(state, 'state');
   })
-  // const CountState = useSelector(state => state.counterrReducer)
+  const stateCounter = useSelector((state:RootState) => state.counterReducer)
+  console.log(stateCounter, 'CountState')
 
   const addCount = () => {
     dispatch(addAction(5))

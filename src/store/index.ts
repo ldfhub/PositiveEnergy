@@ -26,3 +26,7 @@ export default function configStore () {
   const store = createStore(rootReducer, enhancer)
   return store
 }
+const store = configStore();
+// export default store;
+
+export type RootState = ReturnType<typeof store.getState>
