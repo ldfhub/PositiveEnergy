@@ -2,7 +2,7 @@
   "miniprogramRoot": "./dist",
   "projectname": "PositiveEnergy",
   "description": "PositiveEnergy",
-  "appid": "touristappid",
+  "appid": "wx967483df661abe9c",
   "setting": {
     "urlCheck": true,
     "es6": false,

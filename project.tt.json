@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "./",
   "projectname": "PositiveEnergy",
-  "appid": "testAppId",
+  "appid": "wx967483df661abe9c",
   "setting": {
     "es6": false,
     "minified": false
