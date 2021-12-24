@@ -4,11 +4,11 @@
 import Taro from "@tarojs/taro";
 import { IRequest } from './request.interface';
 
-export const Requext = (url:string, methods:string = 'GET', data:object, header:object = {}, contentType) => {
-  const baseUrl = '';
+export const Request = (url:string, methods:string = 'GET', data?:object, header:object = {}, contentType?) => {
+  const baseUrl = 'http://localhost:3000';
 
   const params:IRequest = {
-    url: url,
+    url: `${baseUrl}${url}`,
     data: {
       ...data
     },
