@@ -8,7 +8,6 @@ const Home:FC<IHomeProps> = () => {
   return (
     <View>
       这是首页
-      <TabBar></TabBar>
       <Joke></Joke>
     </View>
   );
