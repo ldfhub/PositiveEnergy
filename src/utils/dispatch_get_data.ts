@@ -4,18 +4,20 @@
 import { Request } from './request';
 
 export const loadAsyncData = (options) => {
-  const { url, methods, requestOptions = {}, type } = options;
-  console.log('00000')
+  const { url, methods, type } = options;
   return (dispatch) => {
-    console.log('55555')
-    return Request(url, methods, ...requestOptions).then((res) => {
+    return Request(url, methods).then((res) => {
       console.log(res, '22222')
-      dispatch({type, payload: res})
-      return res;
+      return dispatch({type, payload: res})
+      // return res;
     })
   }
 }
-
-export const loadSyncData = () => {
-
-}
+// export const loadAsyncData = (options) => {
+//   const { url, methods, type } = options;
+//   return Request(url, methods ).then((res) => {
+//     console.log(res, '22222')
+//     return {type, payload: res};
+//     // return res;
+//   })
+// }

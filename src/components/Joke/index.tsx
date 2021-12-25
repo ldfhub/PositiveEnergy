@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { View, Button } from '@tarojs/components';
 import { useDispatch, useSelector } from 'react-redux';
+import { Request } from '../../utils/request';
 import { addAction, getTest } from '../../actions/count';
 import { RootState } from '../../store'
 import styles from './index.module.scss';
@@ -14,10 +15,8 @@ const Joke: FC<IJokeProps> = (props):ReactElement => {
   const stateCounter = useSelector((state:RootState) => state.counterReducer)
 
   const addCount = () => {
-    dispatch(addAction(5))
-    // const res1 = getTest()
-    // const res2 =res1(dispatch);
-    // console.log(res2, 'res2')
+    dispatch(addAction(5));
+    dispatch(getTest());
   }
   return (
     <View className={styles.Title}>这是{stateCounter.counter}

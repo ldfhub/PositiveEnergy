@@ -18,6 +18,7 @@ export const Request = (url:string, methods:string = 'GET', data?:object, header
     },
     methods
   }
+  console.log(params , '44444444')
   return Taro.request(params).then((res) => {
     // const { code } = res;
     // if (code >= 200 && code <= 30) {
