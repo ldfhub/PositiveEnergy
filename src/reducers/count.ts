@@ -2,7 +2,7 @@ import { ADD_COUNT, EXPRESS_TEST } from "../constants/count";
 
 const initState = {
   counter: 0,
-  test: ''
+  test: {}
 }
 export const counterReducer = (counters = initState, action) => {
   switch (action.type) {

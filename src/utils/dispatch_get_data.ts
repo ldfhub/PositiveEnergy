@@ -3,21 +3,27 @@
  */
 import { Request } from './request';
 
-export const loadAsyncData = (options) => {
-  const { url, methods, type } = options;
-  return (dispatch) => {
-    return Request(url, methods).then((res) => {
-      console.log(res, '22222')
-      return dispatch({type, payload: res})
-      // return res;
+interface ILoadAsync {
+  url: string;
+  methods: string;
+  type: string;
+  optionsRequest?: object;
+}
+
+export const loadAsyncData = (options: ILoadAsync) => {
+  const { url, methods, type, optionsRequest } = options;
+  if (optionsRequest && typeof optionsRequest === 'object') {
+    return (dispatch) => {
+      return Request({ url, methods, ...optionsRequest }).then((res) => {
+        dispatch({type, payload: res})
+        return res;
+      })
+    }
+  }
+  return (dispatch)=> {
+    return Request({ url, methods }).then((res) => {
+      dispatch({type, payload: res})
+      return res;
     })
   }
 }
-// export const loadAsyncData = (options) => {
-//   const { url, methods, type } = options;
-//   return Request(url, methods ).then((res) => {
-//     console.log(res, '22222')
-//     return {type, payload: res};
-//     // return res;
-//   })
-// }

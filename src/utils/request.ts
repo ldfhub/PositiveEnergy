@@ -4,21 +4,21 @@
 import Taro from "@tarojs/taro";
 import { IRequest } from './request.interface';
 
-export const Request = (url:string, methods:string = 'GET', data?:object, header:object = {}, contentType?) => {
+export const Request = (options) => {
   const baseUrl = 'http://localhost:3000';
+  const { url, methods, optionsRequest } = options;
 
   const params:IRequest = {
     url: `${baseUrl}${url}`,
     data: {
-      ...data
+      ...optionsRequest?.data
     },
     header: {
-      'content-type': contentType || 'application/json', // 默认值
-      ...header
+      'content-type': optionsRequest?.contentType || 'application/json', // 默认值
+      ...optionsRequest?.header
     },
     methods
   }
-  console.log(params , '44444444')
   return Taro.request(params).then((res) => {
     // const { code } = res;
     // if (code >= 200 && code <= 30) {
