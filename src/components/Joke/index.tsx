@@ -19,11 +19,11 @@ const Joke: FC<IJokeProps> = (props):ReactElement => {
   }
   return (
     <View className={styles.Title}>这是{counter}
-      {
+      {/* {
         test?.data?.result?.songs?.map((item) => {
           return <View key={item.id}>{item.name}</View>
         })
-      }
+      } */}
       <Button type='primary' onClick={addCount}> + </Button>
     </View>
   );

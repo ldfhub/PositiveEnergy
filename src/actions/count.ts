@@ -12,7 +12,7 @@ export const addAction = (num:number) => ({
 // })
 export const getTest = () => {
   const params = {
-    url: '/search?keywords=海阔天空',
+    url: '',
     methods: 'GET',
     type: EXPRESS_TEST
   }

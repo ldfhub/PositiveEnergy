@@ -5,7 +5,7 @@ import Taro from "@tarojs/taro";
 import { IRequest } from './request.interface';
 
 export const Request = (options) => {
-  const baseUrl = 'http://localhost:3000';
+  const baseUrl = 'http://localhost:3300';
   const { url, methods, optionsRequest } = options;
 
   const params:IRequest = {
