@@ -1,8 +1,9 @@
 import React, { FC, ReactElement } from 'react';
 import { View, Button } from '@tarojs/components';
+import { AtButton } from 'taro-ui';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAction, getTest } from '../../actions/count';
-import { RootState } from '../../store'
+import { RootState } from '../../store';
 import styles from './index.module.scss';
 
 interface IJokeProps {
@@ -24,7 +25,7 @@ const Joke: FC<IJokeProps> = (props):ReactElement => {
           return <View key={item.id}>{item.name}</View>
         })
       } */}
-      <Button type='primary' onClick={addCount}> + </Button>
+      <AtButton type='primary' onClick={addCount}> + </AtButton>
     </View>
   );
 }
