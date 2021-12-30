@@ -1,2 +1,3 @@
 export const ADD_COUNT = 'ADD_COUNT';
 export const EXPRESS_TEST= 'EXPRESS_TEST';
+export const UPLOAD_CONTENT='UPLOAD_CONTENT';

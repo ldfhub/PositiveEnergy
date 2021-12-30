@@ -1,4 +1,4 @@
-import { ADD_COUNT, EXPRESS_TEST } from "../constants/count";
+import { ADD_COUNT, EXPRESS_TEST, UPLOAD_CONTENT } from "../constants/count";
 
 const initState = {
   counter: 0,

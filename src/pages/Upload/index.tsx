@@ -1,5 +1,7 @@
 import React, { FC, ReactElement, useReducer, useState } from 'react';
+// import Taro from '@tarojs/taro';
 import { View, Picker } from '@tarojs/components';
+import { Request } from   '../../utils/request';
 import { AtForm, AtInput, AtButton, AtList, AtListItem, AtTextarea, AtToast } from 'taro-ui'
 
 interface indexProps {
@@ -43,9 +45,20 @@ const Upload: FC<indexProps> = (): ReactElement => {
     dispatch({ type: 'SetContent', payload: value})
   }
   const onSubmit = (e) => {
+
     if (!state.type || !state.content || !state.title) {
       setIsOpened(true);
     }
+    const options = {
+      url: '/upload/content',
+      methods: 'POST',
+      optionsRequest: {
+        data: {
+          ...state
+        }
+      }
+    }
+    Request(options)
   }
   const onReset = () => {
     dispatch({ type: 'Reset' })
@@ -53,10 +66,7 @@ const Upload: FC<indexProps> = (): ReactElement => {
 
   return (
     <View>
-      <AtForm
-        onSubmit={onSubmit}
-        onReset={onReset}
-      >
+      <AtForm>
         <Picker mode='selector' range={pickerDataSource} onChange={onChangePicker}>
           <AtList>
             <AtListItem
