@@ -6,7 +6,7 @@ import { IRequest } from './request.interface';
 
 export const Request = (options) => {
   const baseUrl = 'http://localhost:3300';
-  const { url, methods, optionsRequest } = options;
+  const { url, method, optionsRequest } = options;
 
   const params:IRequest = {
     url: `${baseUrl}${url}`,
@@ -17,8 +17,9 @@ export const Request = (options) => {
       'content-type': optionsRequest?.contentType || 'application/json', // 默认值
       ...optionsRequest?.header
     },
-    methods
+    method
   }
+  console.log(params);
   return Taro.request(params).then((res) => {
     // const { code } = res;
     // if (code >= 200 && code <= 30) {

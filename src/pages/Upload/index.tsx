@@ -51,7 +51,7 @@ const Upload: FC<indexProps> = (): ReactElement => {
     }
     const options = {
       url: '/upload/content',
-      methods: 'POST',
+      method: 'POST',
       optionsRequest: {
         data: {
           ...state
