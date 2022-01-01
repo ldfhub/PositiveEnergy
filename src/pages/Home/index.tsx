@@ -3,7 +3,6 @@ import Taro from '@tarojs/taro';
 import { View, OpenData } from '@tarojs/components';
 import { AtButton, AtModal, AtModalHeader, AtModalContent, AtModalAction } from 'taro-ui';
 import { IHomeProps } from './index.interface';
-import TabBar from '../../components/TabBar/index'
 import Joke from '../../components/Joke/index'
 
 const Home:FC<IHomeProps> = () => {

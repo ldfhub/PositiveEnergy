@@ -40,9 +40,16 @@ const Upload: FC<indexProps> = (): ReactElement => {
   }
   const onChangePicker = (e) => {
     dispatch({ type: 'SetType', payload: pickerDataSource[e.detail.value]})
+    // console.log(getType())
   }
   const changeContent = (value, e) => {
     dispatch({ type: 'SetContent', payload: value})
+  }
+  const getType = () => {
+    const type = pickerDataSource.findIndex((i, index) => {
+      return i === state.type
+    });
+    return type + 1;
   }
   const onSubmit = (e) => {
 
@@ -54,10 +61,12 @@ const Upload: FC<indexProps> = (): ReactElement => {
       method: 'POST',
       optionsRequest: {
         data: {
-          ...state
+          ...state,
+          type: getType()
         }
       }
     }
+    console.log(options)
     Request(options)
   }
   const onReset = () => {
