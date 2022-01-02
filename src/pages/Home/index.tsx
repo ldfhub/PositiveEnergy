@@ -1,7 +1,7 @@
 import React, { FC, } from 'react';
 import Taro from '@tarojs/taro';
 import { View, OpenData } from '@tarojs/components';
-import { AtButton, AtModal, AtModalHeader, AtModalContent, AtModalAction } from 'taro-ui';
+import { AtButton } from 'taro-ui';
 import { IHomeProps } from './index.interface';
 import Joke from '../../components/Joke/index'
 
@@ -11,7 +11,7 @@ const Home:FC<IHomeProps> = () => {
       desc: '千零粉丝获取', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       lang: 'zh_CN',
       success: (res) => {
-
+        console.log(res)
       }
     })
   ]

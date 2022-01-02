@@ -1,0 +1,23 @@
+.profile {
+  width: 100%;
+  height: 100%;
+  padding: 20px 20px 0px;
+  box-sizing: border-box;
+  .userInfo {
+    padding: 0px 30px;
+    display: flex;
+    align-items: center;
+    .loginBtn {
+      margin-left: 30px;
+      display: flex;
+      flex-direction: column;
+      .loginOrReg {
+        font-size: 32px;
+      }
+      .userId {
+        font-size: 24px;
+        color: #999;
+      }
+    }
+  }
+}

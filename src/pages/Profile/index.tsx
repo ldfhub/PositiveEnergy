@@ -1,12 +1,35 @@
-import React, { FC, ReactElement } from 'react';
+import { View, Text } from '@tarojs/components';
+import { AtAvatar } from 'taro-ui';
+import React, { FC, ReactElement, useState } from 'react';
+import ListBar from '../../components/ProfileListBar';
+import styles from './index.module.scss';
+import defaultAvatar from '../../assets/wx-default-avatar.png';
+import shareImg from '../../assets/shareImg.png';
 
 interface indexProps {
 
 }
 
 const Profile: FC<indexProps> = (): ReactElement => {
+
+
+  const [avatarSrc, setAvatarSrc] = useState(defaultAvatar)
+  console.log(styles)
   return (
-    <div>这是我的页面</div>
+    <View className={styles.profile}>
+      <View className={styles.userInfo}>
+        <View>
+          <AtAvatar size='large' circle image={avatarSrc} />
+        </View>
+        <View className={styles.loginBtn}>
+          <Text className={styles.loginOrReg}>登陆/注册</Text>
+          <Text className={styles.userId}>用户ID:3333355</Text>
+        </View>
+      </View>
+      <View style={{marginTop: '20px'}}>
+        <ListBar textName='分享邀请好友' imgSrc={shareImg} isArrow />
+      </View>
+    </View>
   );
 }
 
