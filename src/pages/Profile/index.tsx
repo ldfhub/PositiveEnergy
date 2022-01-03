@@ -1,4 +1,5 @@
 import { View, Text } from '@tarojs/components';
+import Taro from '@tarojs/taro';
 import { AtAvatar } from 'taro-ui';
 import React, { FC, ReactElement, useState } from 'react';
 import ListBar from '../../components/ProfileListBar';
@@ -11,10 +12,13 @@ interface indexProps {
 }
 
 const Profile: FC<indexProps> = (): ReactElement => {
-
-
   const [avatarSrc, setAvatarSrc] = useState(defaultAvatar)
-  console.log(styles)
+  const skipLogin = () => {
+    Taro.navigateTo({
+      url: './components/login/index'
+    });
+  }
+
   return (
     <View className={styles.profile}>
       <View className={styles.userInfo}>
@@ -22,7 +26,7 @@ const Profile: FC<indexProps> = (): ReactElement => {
           <AtAvatar size='large' circle image={avatarSrc} />
         </View>
         <View className={styles.loginBtn}>
-          <Text className={styles.loginOrReg}>登陆/注册</Text>
+          <Text className={styles.loginOrReg} onClick={skipLogin}>登陆/注册</Text>
           <Text className={styles.userId}>用户ID:3333355</Text>
         </View>
       </View>

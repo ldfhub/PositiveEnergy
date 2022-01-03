@@ -3,7 +3,8 @@ export default {
     'pages/Home/index',
     'pages/Upload/index',
     'pages/List/index',
-    'pages/Profile/index'
+    'pages/Profile/index',
+    'pages/Profile/components/login/index'
   ],
   tabBar: {
     list: [
