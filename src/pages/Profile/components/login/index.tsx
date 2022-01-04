@@ -1,6 +1,8 @@
 import React, { memo, FC, ReactElement } from 'react';
 import { View } from '@tarojs/components';
+import Taro from '@tarojs/taro';
 import { AtButton } from 'taro-ui';
+import { Request } from '../../../../utils/request';
 
 interface IProps {
 
@@ -8,13 +10,13 @@ interface IProps {
 
 const Login:FC<IProps> = memo(function index(props):ReactElement {
 
-  const getPhoneNumber = (e) => {
-    console.log(e)
+  const getPhoneNumber = () => {
+
   }
 
   return (
     <View>
-      <AtButton openType='getPhoneNumber' onGetPhoneNumber={getPhoneNumber}>微信一键登陆</AtButton>
+      <AtButton onClick={getPhoneNumber}>微信一键登陆</AtButton>
     </View>
   )
 })

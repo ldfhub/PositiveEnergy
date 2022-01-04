@@ -59,14 +59,14 @@ const Upload: FC<indexProps> = (): ReactElement => {
     const options = {
       url: '/upload/content',
       method: 'POST',
-      optionsRequest: {
-        data: {
-          ...state,
-          type: getType()
-        }
+      data: {
+        ...state,
+        type: getType()
       }
+      // optionsRequest: {
+
+      // }
     }
-    console.log(options)
     Request(options)
   }
   const onReset = () => {

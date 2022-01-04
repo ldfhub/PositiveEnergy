@@ -14,6 +14,12 @@ const Home:FC<IHomeProps> = () => {
         console.log(res)
       }
     })
+    // Taro.getStorage({
+    //   key: 'violtToken',
+    //   success: function (res) {
+    //     console.log(res.data)
+    //   }
+    // })
   ]
   return (
     <View>
