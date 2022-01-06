@@ -14,7 +14,7 @@ interface indexProps {
 
 const Profile: FC<indexProps> = (): ReactElement => {
   const [avatarSrc, setAvatarSrc] = useState(defaultAvatar);
-  const [nickName, setNickName] = useState('登陆/注册')
+  const [nickName, setNickName] = useState('账号登陆')
   const skipLogin = () => {
     Taro.getUserProfile({
       desc: '登录黎明花开', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
@@ -22,6 +22,7 @@ const Profile: FC<indexProps> = (): ReactElement => {
         setAvatarSrc(res1.userInfo.avatarUrl);
         setNickName(res1.userInfo.nickName);
         Taro.login({
+          // 获取code
           success: function (res) {
             if (res.code) {
               // 发起网络请求
@@ -36,8 +37,11 @@ const Profile: FC<indexProps> = (): ReactElement => {
               Request(options).then((result) => {
                 console.log(result, '000000')
                 Taro.setStorage({
-                  key:"violtToken",
-                  data:result.data.token
+                  key:"violtTokenAndOpenId",
+                  data: JSON.stringify({
+                    token: result.data.token,
+                    openid: result.data.openid
+                  })
                 })
               })
             } else {
