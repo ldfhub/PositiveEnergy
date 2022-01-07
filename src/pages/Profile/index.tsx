@@ -35,9 +35,8 @@ const Profile: FC<indexProps> = (): ReactElement => {
                 }
               }
               Request(options).then((result) => {
-                console.log(result, '000000')
                 Taro.setStorage({
-                  key:"violtTokenAndOpenId",
+                  key:"violetTokenAndOpenId",
                   data: JSON.stringify({
                     token: result.data.token,
                     openid: result.data.openid

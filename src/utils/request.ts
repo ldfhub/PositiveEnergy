@@ -7,13 +7,12 @@ import { IRequest } from './request.interface';
 // 获取token
 let token = '';
 Taro.getStorage({
-  key: 'violtTokenAndOpenId',
+  key: 'violetTokenAndOpenId',
   success: function (res) {
     console.log(res.data)
     token = JSON.parse(res.data).token
   }
 })
-console.log(token)
 
 export const Request = (options) => {
   const baseUrl = 'http://localhost:3300';

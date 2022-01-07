@@ -63,9 +63,6 @@ const Upload: FC<indexProps> = (): ReactElement => {
         ...state,
         type: getType()
       }
-      // optionsRequest: {
-
-      // }
     }
     Request(options)
   }
