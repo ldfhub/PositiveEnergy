@@ -4,17 +4,16 @@
 import Taro from "@tarojs/taro";
 import { IRequest } from './request.interface';
 
-// 获取token
-let token = '';
-Taro.getStorage({
-  key: 'violetTokenAndOpenId',
-  success: function (res) {
-    console.log(res.data)
-    token = JSON.parse(res.data).token
-  }
-})
+export const Request = async (options) => {
+  // 获取token
+  let token = '';
+  await Taro.getStorage({
+    key: 'violetTokenAndOpenId',
+    success: function (res) {
+      token = JSON.parse(res.data).token
+    }
+  })
 
-export const Request = (options) => {
   const baseUrl = 'http://localhost:3300';
   const { url, method, optionsRequest, data = {} } = options;
 
@@ -29,6 +28,7 @@ export const Request = (options) => {
       ...optionsRequest?.header
     }
   }
+  console.log(token, '9999999')
   if (token) {
     params.header['Authorization'] = `Bearer ${token}`
   }

@@ -1,8 +1,8 @@
 import React, { FC, ReactElement, useReducer, useState } from 'react';
 // import Taro from '@tarojs/taro';
+import { AtForm, AtInput, AtButton, AtList, AtListItem, AtTextarea, AtToast } from 'taro-ui';
 import { View, Picker } from '@tarojs/components';
 import { Request } from   '../../utils/request';
-import { AtForm, AtInput, AtButton, AtList, AtListItem, AtTextarea, AtToast } from 'taro-ui'
 
 interface indexProps {
 
@@ -28,9 +28,14 @@ const reducer = (state, action) => {
       throw new Error();
   }
 }
+const Text = [
+  '为了更好的体验，要完成所有选项填写哦！',
+  '涉及到信息保存，请您先登陆哦！'
+]
 
 const Upload: FC<indexProps> = (): ReactElement => {
-  const [state, dispatch] = useReducer(reducer, initState)
+  const [state, dispatch] = useReducer(reducer, initState);
+  const [toastText, setToastText] = useState<string>('');
   const [isOpened, setIsOpened] = useState(false)
   const pickerDataSource = [
     '笑话', '情话', '网易云热评'
@@ -40,7 +45,6 @@ const Upload: FC<indexProps> = (): ReactElement => {
   }
   const onChangePicker = (e) => {
     dispatch({ type: 'SetType', payload: pickerDataSource[e.detail.value]})
-    // console.log(getType())
   }
   const changeContent = (value, e) => {
     dispatch({ type: 'SetContent', payload: value})
@@ -52,22 +56,33 @@ const Upload: FC<indexProps> = (): ReactElement => {
     return type + 1;
   }
   const onSubmit = (e) => {
-
     if (!state.type || !state.content || !state.title) {
       setIsOpened(true);
-    }
-    const options = {
-      url: '/upload/content',
-      method: 'POST',
-      data: {
-        ...state,
-        type: getType()
+      setToastText(Text[0]);
+    } else {
+      const options = {
+        url: '/upload/content',
+        method: 'POST',
+        data: {
+          ...state,
+          type: getType()
+        }
       }
+      Request(options).then((res) => {
+        if (res.data.msg === 'token验证失败') {
+          setIsOpened(true);
+          setToastText(Text[1]);
+        }
+      })
     }
-    Request(options)
   }
+  // 表单重置
   const onReset = () => {
     dispatch({ type: 'Reset' })
+  }
+
+  const toastClose = () => {
+    setIsOpened(false)
   }
 
   return (
@@ -98,7 +113,7 @@ const Upload: FC<indexProps> = (): ReactElement => {
         <AtButton onClick={onSubmit}>提交</AtButton>
         <AtButton onClick={onReset}>重置</AtButton>
       </AtForm>
-      <AtToast isOpened={isOpened} text='为了更好的体验，要完成所有选项填写哦！'></AtToast>
+      <AtToast isOpened={isOpened} text={toastText} onClose={toastClose}></AtToast>
     </View>
   );
 }
