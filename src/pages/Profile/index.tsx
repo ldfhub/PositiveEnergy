@@ -1,6 +1,6 @@
 import { View, Text } from '@tarojs/components';
 import Taro from '@tarojs/taro';
-import { AtAvatar } from 'taro-ui';
+import { AtAvatar, AtToast } from 'taro-ui';
 import React, { FC, ReactElement, useState } from 'react';
 import { Request } from '../../utils/request';
 import ListBar from '../../components/ProfileListBar';
@@ -15,6 +15,7 @@ interface indexProps {
 const Profile: FC<indexProps> = (): ReactElement => {
   const [avatarSrc, setAvatarSrc] = useState(defaultAvatar);
   const [nickName, setNickName] = useState('账号登陆')
+  const [isOpened, setIsOpened] = useState(false);
   const skipLogin = () => {
     Taro.getUserProfile({
       desc: '登录黎明花开', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
@@ -42,6 +43,7 @@ const Profile: FC<indexProps> = (): ReactElement => {
                     openid: result.data.openid
                   })
                 })
+                setIsOpened(true)
               })
             } else {
               console.log('登录失败！' + res.errMsg)
@@ -58,14 +60,15 @@ const Profile: FC<indexProps> = (): ReactElement => {
         <View>
           <AtAvatar size='large' circle image={avatarSrc} />
         </View>
-        <View className={styles.loginBtn}>
-          <Text className={styles.loginOrReg} onClick={skipLogin}>{nickName}</Text>
+        <View className={styles.loginBtn} onClick={skipLogin}>
+          <Text className={styles.loginOrReg}>{nickName}</Text>
           <Text className={styles.userId}>已经登陆/未登陆</Text>
         </View>
       </View>
       <View style={{marginTop: '20px'}}>
         <ListBar textName='分享邀请好友' imgSrc={shareImg} isArrow />
       </View>
+      <AtToast isOpened={isOpened} text='登陆成功！'></AtToast>
     </View>
   );
 }

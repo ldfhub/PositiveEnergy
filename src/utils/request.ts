@@ -28,7 +28,6 @@ export const Request = async (options) => {
       ...optionsRequest?.header
     }
   }
-  console.log(token, '9999999')
   if (token) {
     params.header['Authorization'] = `Bearer ${token}`
   }
