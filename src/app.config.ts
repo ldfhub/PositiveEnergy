@@ -1,5 +1,6 @@
 export default {
   pages: [
+    'pages/GuidePages/index',
     'pages/Home/index',
     'pages/Upload/index',
     'pages/List/index',
