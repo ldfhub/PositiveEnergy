@@ -7,6 +7,12 @@
     padding: 0px 30px;
     display: flex;
     align-items: center;
+    .avatarBox {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
     .loginBtn {
       margin-left: 30px;
       display: flex;

@@ -1,9 +1,11 @@
-import { View, Text } from '@tarojs/components';
+import { View, Text, OpenData } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import { AtAvatar, AtToast } from 'taro-ui';
 import React, { FC, ReactElement, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Request } from '../../utils/request';
 import ListBar from '../../components/ProfileListBar';
+import { RootState } from '../../store';
 import styles from './index.module.scss';
 import defaultAvatar from '../../assets/wx-default-avatar.png';
 import shareImg from '../../assets/shareImg.png';
@@ -16,6 +18,8 @@ const Profile: FC<indexProps> = (): ReactElement => {
   const [avatarSrc, setAvatarSrc] = useState(defaultAvatar);
   const [nickName, setNickName] = useState('账号登陆')
   const [isOpened, setIsOpened] = useState(false);
+  const { loginStatus} = useSelector((state:RootState) => state.loginReducer)
+  console.log(loginStatus, '00000000');
   const skipLogin = () => {
     Taro.getUserProfile({
       desc: '登录黎明花开', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
@@ -57,12 +61,20 @@ const Profile: FC<indexProps> = (): ReactElement => {
   return (
     <View className={styles.profile}>
       <View className={styles.userInfo}>
-        <View>
-          <AtAvatar size='large' circle image={avatarSrc} />
+        <View className={styles.avatarBox}>
+          {
+            !loginStatus
+            ? <AtAvatar size='large' circle image={avatarSrc} />
+            : <OpenData type='userAvatarUrl' />
+          }
         </View>
         <View className={styles.loginBtn} onClick={skipLogin}>
-          <Text className={styles.loginOrReg}>{nickName}</Text>
-          <Text className={styles.userId}>已经登陆/未登陆</Text>
+          {
+            !loginStatus
+            ? <Text className={styles.loginOrReg}>{nickName}</Text>
+            : <OpenData className={styles.loginOrReg} type='userNickName' />
+          }
+          <Text className={styles.userId}>{ loginStatus ? '已经登陆' : '未登陆'}</Text>
         </View>
       </View>
       <View style={{marginTop: '20px'}}>
