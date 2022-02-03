@@ -1,9 +1,10 @@
 import { View, Text, OpenData } from '@tarojs/components';
-import Taro from '@tarojs/taro';
+import Taro, { useShareAppMessage, useShareTimeline } from '@tarojs/taro';
 import { AtAvatar, AtToast } from 'taro-ui';
 import React, { FC, ReactElement, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Request } from '../../utils/request';
+import { addLoginStatus } from '../../actions/login';
 import ListBar from '../../components/ProfileListBar';
 import { RootState } from '../../store';
 import styles from './index.module.scss';
@@ -19,6 +20,7 @@ const Profile: FC<indexProps> = (): ReactElement => {
   const [nickName, setNickName] = useState('账号登陆')
   const [isOpened, setIsOpened] = useState(false);
   const { loginStatus} = useSelector((state:RootState) => state.loginReducer)
+  const dispatch = useDispatch();
   console.log(loginStatus, '00000000');
   const skipLogin = () => {
     Taro.getUserProfile({
@@ -40,6 +42,7 @@ const Profile: FC<indexProps> = (): ReactElement => {
                 }
               }
               Request(options).then((result) => {
+                dispatch(addLoginStatus(true))
                 Taro.setStorage({
                   key:"violetTokenAndOpenId",
                   data: JSON.stringify({
@@ -57,6 +60,17 @@ const Profile: FC<indexProps> = (): ReactElement => {
       }
     })
   }
+
+  useShareAppMessage(res => {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '邀请好友',
+      path: '/pages/GuidePages/index.tsx'
+    }
+  })
 
   return (
     <View className={styles.profile}>
@@ -78,7 +92,7 @@ const Profile: FC<indexProps> = (): ReactElement => {
         </View>
       </View>
       <View style={{marginTop: '20px'}}>
-        <ListBar textName='分享邀请好友' imgSrc={shareImg} isArrow />
+        <ListBar textName='分享邀请好友' imgSrc={shareImg} isArrow type='share' />
       </View>
       <AtToast isOpened={isOpened} text='登陆成功！'></AtToast>
     </View>
