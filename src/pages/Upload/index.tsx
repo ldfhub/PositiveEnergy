@@ -39,7 +39,7 @@ const Upload: FC<indexProps> = (): ReactElement => {
   const [toastText, setToastText] = useState<string>('');
   const [isOpened, setIsOpened] = useState(false)
   const pickerDataSource = [
-    '笑话', '情话', '网易云热评'
+    '笑话', '情话', '网易云热评', '励志语录'
   ]
   const changeTitle = (value, e) => {
     dispatch({ type: 'SetTitle', payload: value})
