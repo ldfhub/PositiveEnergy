@@ -28,6 +28,12 @@ const Profile: FC<indexProps> = (): ReactElement => {
       success: (res1) => {
         setAvatarSrc(res1.userInfo.avatarUrl);
         setNickName(res1.userInfo.nickName);
+        Taro.setStorage({
+          key:"WXNickName",
+          data: JSON.stringify({
+            wxNickName: res1.userInfo.nickName
+          })
+        })
         Taro.login({
           // 获取code
           success: function (res) {

@@ -3,6 +3,7 @@ import React, { FC, ReactElement, useReducer, useState } from 'react';
 import { AtForm, AtInput, AtButton, AtList, AtListItem, AtTextarea, AtToast } from 'taro-ui';
 import { View, Picker } from '@tarojs/components';
 import { Request } from   '../../utils/request';
+import { getUserInfo } from '../../utils/tools';
 
 interface indexProps {
 
@@ -49,6 +50,9 @@ const Upload: FC<indexProps> = (): ReactElement => {
   const changeContent = (value, e) => {
     dispatch({ type: 'SetContent', payload: value})
   }
+  const re1 = getUserInfo('violetTokenAndOpenId');
+  const wxName = getUserInfo('WXNickName');
+  // console.log(re1, re2)
   const getType = () => {
     const type = pickerDataSource.findIndex((i, index) => {
       return i === state.type
@@ -65,7 +69,9 @@ const Upload: FC<indexProps> = (): ReactElement => {
         method: 'POST',
         data: {
           ...state,
-          type: getType()
+          type: getType(),
+          wxId: re1.openid,
+          wxNickName: wxName.wxNickName
         }
       }
       Request(options).then((res) => {

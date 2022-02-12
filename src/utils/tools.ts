@@ -25,3 +25,14 @@ export const checkSession = (dispatch) => {
   })
 }
 
+export const getUserInfo = (key:string) => {
+  try {
+    const value = JSON.parse(Taro.getStorageSync(key));
+    if (value) {
+      return value
+    }
+  } catch (e) {
+    console.log(e)
+  }
+}
+
