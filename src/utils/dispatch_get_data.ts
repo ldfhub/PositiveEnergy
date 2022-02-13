@@ -22,8 +22,9 @@ export const loadAsyncData = (options: ILoadAsync) => {
     }
   }
   return (dispatch)=> {
-    return Request({ url, method }).then((res) => {
-      dispatch({type, payload: res})
+    return Request({ url, method, data }).then((res) => {
+      console.log(res, '00000000')
+      dispatch({type, payload: res.data})
       return res;
     })
   }

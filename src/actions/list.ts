@@ -3,7 +3,7 @@ import { loadAsyncData } from '../utils/dispatch_get_data';
 
 export const queryList = (data:object) => {
   const params = {
-    url: '/queryList',
+    url: '/query/queryList',
     method: 'POST',
     type: QUERY_LIST,
     data

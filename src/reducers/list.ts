@@ -1,12 +1,12 @@
-import { LOGIN_STATUS } from "../constants/login";
+import { QUERY_LIST } from "../constants/list";
 
 const initState = {
   list: []
 }
 export const listReducer = (queryLists = initState, action) => {
   switch (action.type) {
-    case LOGIN_STATUS:
-      return { ...queryLists, list: action.payload };
+    case QUERY_LIST:
+      return { ...queryLists, list: action.payload.list };
     default:
       return { ...queryLists }
   }

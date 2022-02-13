@@ -3,14 +3,15 @@ import React, { FC, ReactElement} from 'react';
 import styles from './index.module.scss';
 
 interface IProps {
-
+  info:any
 }
-const CustomList: FC<IProps> = ():ReactElement => {
+const CustomList: FC<IProps> = (props):ReactElement => {
+  const { info } = props;
   return (
     <View className={styles.customList}>
       <View className={styles.L}>
         <View className={styles.content}>
-          文案1 文案1文案1文案1文案1文案1文案1文案1文案1 文案1文案1文案1文案1文案1文案1文案1
+          { info.content }
         </View>
         <View className={styles.date}>收藏时间:2022年2月12号</View>
       </View>
