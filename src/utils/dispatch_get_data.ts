@@ -5,23 +5,24 @@ import { Request } from './request';
 
 interface ILoadAsync {
   url: string;
-  methods: string;
+  method: string;
   type: string;
   optionsRequest?: object;
+  data?: object
 }
 
 export const loadAsyncData = (options: ILoadAsync) => {
-  const { url, methods, type, optionsRequest } = options;
+  const { url, method, type, optionsRequest, data } = options;
   if (optionsRequest && typeof optionsRequest === 'object') {
     return (dispatch) => {
-      return Request({ url, methods, ...optionsRequest }).then((res) => {
+      return Request({ url, method, ...optionsRequest, data }).then((res) => {
         dispatch({type, payload: res})
         return res;
       })
     }
   }
   return (dispatch)=> {
-    return Request({ url, methods }).then((res) => {
+    return Request({ url, method }).then((res) => {
       dispatch({type, payload: res})
       return res;
     })

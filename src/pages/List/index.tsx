@@ -1,10 +1,12 @@
 import { View } from '@tarojs/components';
-import React, { FC, ReactElement, useState } from 'react';
+import React, { FC, ReactElement, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AtButton } from 'taro-ui';
 import styles from './index.module.scss';
 import { screenType } from '../../utils/constantData';
 import { IButtonActiveType } from './index.d';
+import { queryList} from '../../actions/list';
+import { getUserInfo } from '../../utils/tools';
 import CustomList from './component/CustomList';
 import { RootState } from '../../store';
 
@@ -12,12 +14,35 @@ interface indexProps {
 
 }
 
+// 1: 笑话
+// 2: 情话
+// 3: 热评论
+// 4: 励志
+
 const List: FC<indexProps> = (): ReactElement => {
   const [buttonActiveType, setButtonActiveType] = useState('笑话'); // 设置button激活类型
-  const { loginStatus} = useSelector((state:RootState) => state.loginReducer)
+  const [type, setType] = useState('1');
+  const { loginStatus} = useSelector((state:RootState) => state.loginReducer);
+  const dispatch = useDispatch();
+  const wxId = getUserInfo('violetTokenAndOpenId').openid;
+  const wxNickName = getUserInfo('WXNickName').wxNickName;
+  useEffect(() => {
+    queryAllList();
+  }, [type])
+  // 查询列表
+  const queryAllList = () => {
+    const params = {
+      wxId,
+      wxNickName,
+      type
+    }
+    dispatch(queryList(params));
+  }
+
   const buttonClick = (item) => {
     return () => {
       setButtonActiveType(item.name);
+      queryAllList();
     }
   }
   return (

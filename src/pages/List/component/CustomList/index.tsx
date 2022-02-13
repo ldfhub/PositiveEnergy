@@ -8,7 +8,13 @@ interface IProps {
 const CustomList: FC<IProps> = ():ReactElement => {
   return (
     <View className={styles.customList}>
-      文案1 文案1文案1文案1文案1文案1文案1文案1
+      <View className={styles.L}>
+        <View className={styles.content}>
+          文案1 文案1文案1文案1文案1文案1文案1文案1文案1 文案1文案1文案1文案1文案1文案1文案1
+        </View>
+        <View className={styles.date}>收藏时间:2022年2月12号</View>
+      </View>
+      <View className={styles.detail}>详情</View>
     </View>
   )
 }
