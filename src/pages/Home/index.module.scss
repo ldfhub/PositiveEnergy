@@ -1,0 +1,20 @@
+.home {
+  padding: 0px 20px;
+  .banner {
+    width: 100%;
+    height: 220px;
+    border-radius: 10px;
+    background-color: #ccc;
+  }
+  .middleTitle {
+    margin-top: 10px;
+    padding-bottom: 6px;
+    font-size: 28px;
+    // color: #333;
+    height: 40px;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+  }
+}

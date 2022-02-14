@@ -1,0 +1,18 @@
+.customTable {
+  margin-top: 20px;
+  display: flex;
+  width: 100%;
+  .thumbnail {
+    width: 200px;
+    height: 200px;
+    background-color: #ccc;
+    border-radius: 10px;
+  }
+  .contentInfo {
+    margin-left: 20px;
+    height: 200px;
+    width: calc(100% - 220px);
+    background-color: #ccc;
+    border-radius: 10px;
+  }
+}

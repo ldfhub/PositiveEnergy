@@ -47,7 +47,6 @@ const List: FC<indexProps> = (): ReactElement => {
       queryAllList();
     }
   }
-  console.log(list);
   return (
     <View className={styles.list}>
       {
