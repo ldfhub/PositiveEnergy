@@ -9,10 +9,19 @@
     border-radius: 10px;
   }
   .contentInfo {
+    // display: flex;
+    // align-items: center;
+    font-size: 28px;
     margin-left: 20px;
     height: 200px;
     width: calc(100% - 220px);
     background-color: #ccc;
     border-radius: 10px;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
   }
 }
