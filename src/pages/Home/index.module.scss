@@ -1,3 +1,7 @@
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 .home {
   padding: 0px 20px;
   .banner {
@@ -16,5 +20,16 @@
     border-bottom: 1px solid #ccc;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    .refresh {
+      margin-right: 15px;
+      width: 30px;
+      height: 30px;
+      background-size: 30px 30px;
+      background-image: url('../../assets/刷新.png');
+    }
+    .route {
+      animation: spin 1s infinite linear;
+    }
   }
 }
