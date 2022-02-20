@@ -3,6 +3,7 @@
   100% { transform: rotate(360deg); }
 }
 .home {
+  height: 100%;
   padding: 0px 20px;
   .banner {
     width: 100%;
@@ -31,5 +32,11 @@
     .route {
       animation: spin 1s infinite linear;
     }
+  }
+  .homeBottom {
+    height: calc(100% - 260px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 }
