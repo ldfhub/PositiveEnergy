@@ -1,5 +1,5 @@
 import { View, Text } from '@tarojs/components';
-import React, { FC, ReactElement, useState} from 'react';
+import React, { FC, ReactElement, useState, useRef} from 'react';
 import copy from "copy-to-clipboard";
 import { AtToast } from "taro-ui"
 import Taro from '@tarojs/taro';
@@ -11,6 +11,16 @@ interface IProps {
 
 const CustomTable: FC<IProps> = (props):ReactElement => {
   const { info } = props;
+  const timeId = useRef();
+  const [isRoute, setIsRoute] = useState(false);
+  const clickRoute = () => {
+    // clearTimeout(timeId.current);
+    setIsRoute(true)
+    timeId.current = setTimeout(() => {
+      // queryAllHomelist();
+      setIsRoute(false);
+    }, 1000)
+  }
   const copyText = (textToCopy) => {
     return () => {
       Taro.setClipboardData({
@@ -29,10 +39,15 @@ const CustomTable: FC<IProps> = (props):ReactElement => {
           {info?.content}
         </Text>
         <View className={styles.btnInfo}>
-          <View className='at-icon at-icon-heart'>{(Number(info.easyLike))}</View>
-          <View className='at-icon at-icon-star'>{(Number(info.collect))}</View>
-          <Text onClick={copyText(info.content)}>复制文字</Text>
-          <Text>详情</Text>
+          <View className={styles.btnInfo_l}>
+            <View className='mgl10 at-icon at-icon-heart'>({Number(info.easyLike)})</View>
+            <View className='mgl10 at-icon at-icon-star'>({Number(info.collect)})</View>
+            <Text className='mgl10' onClick={copyText(info.content)}>复制文字</Text>
+          </View>
+          <View className={styles.btnInfo_r}>
+            <View className={isRoute ? styles.route + ' ' + styles.refresh : styles.refresh} onClick={clickRoute}></View>
+            <Text className='mgl10 mgr10'>详情</Text>
+          </View>
         </View>
       </View>
     </View>

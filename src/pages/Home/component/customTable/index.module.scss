@@ -25,11 +25,32 @@
       text-overflow:ellipsis;
     }
     .btnInfo {
-      // display: flex;
-      float: right;
+      display: flex;
+      // float: right;
       height: 5vw;
+      align-items: center;
+      justify-content: space-between;
       width: 100%;
+      .btnInfo_l {
+        display: flex;
+        align-items: center;
+      }
+      .refresh {
+        margin-right: 15px;
+        width: 30px;
+        height: 30px;
+        background-size: 30px 30px;
+        background-image: url('../../../../assets/刷新.png');
+      }
+      .route {
+        animation: spin 1s infinite linear;
+      }
       // background-color: #000;
+      .btnInfo_r {
+        float: right;
+        display: flex;
+        align-items: center;
+      }
     }
   }
 }
