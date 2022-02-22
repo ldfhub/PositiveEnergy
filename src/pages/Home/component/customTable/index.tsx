@@ -1,8 +1,10 @@
 import { View, Text } from '@tarojs/components';
 import React, { FC, ReactElement, useState, useRef} from 'react';
 import copy from "copy-to-clipboard";
-import { AtToast } from "taro-ui"
+import { AtToast } from "taro-ui";
+import { useDispatch } from 'react-redux';
 import Taro from '@tarojs/taro';
+import { queryHomeOne } from '../../../../actions/home';
 import styles from './index.module.scss';
 
 interface IProps {
@@ -10,14 +12,19 @@ interface IProps {
 }
 
 const CustomTable: FC<IProps> = (props):ReactElement => {
+  const dispatch = useDispatch();
   const { info } = props;
   const timeId = useRef();
   const [isRoute, setIsRoute] = useState(false);
+  const queryHomeOneList = () => {
+    console.log('000000')
+    dispatch(queryHomeOne({ type: info.type }))
+  }
   const clickRoute = () => {
     // clearTimeout(timeId.current);
     setIsRoute(true)
     timeId.current = setTimeout(() => {
-      // queryAllHomelist();
+      queryHomeOneList();
       setIsRoute(false);
     }, 1000)
   }

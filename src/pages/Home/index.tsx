@@ -7,6 +7,9 @@ import styles from './index.module.scss';
 import CustomTable from './component/customTable';
 import { RootState } from '../../store';
 import refresh from '../../assets/刷新.png';
+import backImg1 from '../../assets/背景1.jpg';
+import backImg2 from '../../assets/背景2.jpg';
+import backImg3 from '../../assets/背景3.jpg';
 // import Joke from '../../components/Joke/index'
 
 const Home:FC<IHomeProps> = () => {
@@ -33,7 +36,7 @@ const Home:FC<IHomeProps> = () => {
   return (
     <View className={styles.home}>
       <View className={styles.banner}>
-        <Image src='' />
+        <Image src={backImg2} />
       </View>
       <View className={styles.middleTitle}>
         <Text>今日分享</Text>

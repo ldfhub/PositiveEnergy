@@ -8,11 +8,12 @@ interface ILoadAsync {
   method: string;
   type: string;
   optionsRequest?: object;
-  data?: object
+  data?: object;
+  payloadExtra?: any;
 }
 
 export const loadAsyncData = (options: ILoadAsync) => {
-  const { url, method, type, optionsRequest, data } = options;
+  const { url, method, type, optionsRequest, data, payloadExtra } = options;
   if (optionsRequest && typeof optionsRequest === 'object') {
     return (dispatch) => {
       return Request({ url, method, ...optionsRequest, data }).then((res) => {
@@ -21,9 +22,17 @@ export const loadAsyncData = (options: ILoadAsync) => {
       })
     }
   }
+  if (payloadExtra) {
+    return (dispatch)=> {
+      return Request({ url, method, data }).then((res) => {
+        console.log('payloadExtra存在')
+        dispatch({type, payload: {data: res.data,extra: payloadExtra}})
+        return res;
+      })
+    }
+  }
   return (dispatch)=> {
     return Request({ url, method, data }).then((res) => {
-      console.log(res, '00000000')
       dispatch({type, payload: res.data})
       return res;
     })
