@@ -28,10 +28,9 @@ export const homeReducer = (queryHomeLists = initState, action) => {
           break;
       }
       console.log(num, 'num');
-      console.log(queryHomeLists.list, 'queryHomeLists.list')
-      queryHomeLists.list.splice(num, 1, action.payload.data.list);
-      // console.log(finalList, 'finalList');
-      return { ...queryHomeLists, list: queryHomeLists.list.splice(num, 1, action.payload.data.list) };
+      queryHomeLists.list.splice(num, 1, ...action.payload.data.list);
+      console.log(queryHomeLists.list, 'queryHomeLists.list2222222222');
+      return { ...queryHomeLists, list: queryHomeLists.list };
     default:
       return { ...queryHomeLists }
   }
