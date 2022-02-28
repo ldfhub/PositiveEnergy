@@ -2,6 +2,7 @@ import { View, Text } from '@tarojs/components';
 import React, { FC, ReactElement, useState, useRef} from 'react';
 import copy from "copy-to-clipboard";
 import { AtToast } from "taro-ui";
+// import bag1 from '../../../../assets/4.jpg'
 import { useDispatch } from 'react-redux';
 import Taro from '@tarojs/taro';
 import { queryHomeOne } from '../../../../actions/home';

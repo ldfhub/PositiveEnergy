@@ -9,12 +9,9 @@
     width: 100%;
     height: 220px;
     border-radius: 10px;
-    // background-color: #ccc;
-    Image {
-      width: 100%;
-      height: 100%;
-      border-radius: 10px;
-    }
+    background-image: url('../../assets//tu1.jpg');
+    background-size: 100% 220px;
+    background-position: center;
   }
   .middleTitle {
     margin-top: 10px;
