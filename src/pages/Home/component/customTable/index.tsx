@@ -41,7 +41,7 @@ const CustomTable: FC<IProps> = (props):ReactElement => {
   }
   return (
     <View className={styles.customTable}>
-      <View className={styles.thumbnail}></View>
+      {/* <View className={styles.thumbnail}></View> */}
       <View className={styles.contentInfo}>
         <Text className={styles.textContent}>
           {info?.content}

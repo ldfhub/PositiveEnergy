@@ -14,8 +14,8 @@ export const Request = async (options) => {
     }
   })
 
-  // const baseUrl = 'https://miniprogram.coderldf.club';
-   const baseUrl = 'http://localhost:3300';
+  const baseUrl = 'http://119.45.25.73:3300';
+  //  const baseUrl = 'http://localhost:3300';
   const { url, method, optionsRequest, data = {} } = options;
 
   const params:IRequest = {
